@@ -1,0 +1,43 @@
+
+/* Smart Financial List — mobile-first, native RTL */
+:root{--accent:#087a67;--hairline:#e5e7eb}
+.fin-summary{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(85px,1fr);gap:0;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;margin-bottom:16px}
+.fin-summary>div{min-width:0}.fin-summary>div+div{border-inline-start:1px solid var(--border);padding-inline-start:14px;margin-inline-start:14px}
+.fin-summary span,.fin-summary small{display:block;font-size:11px;color:var(--secondary)}
+.fin-summary strong{display:block;font-size:clamp(16px,3vw,22px);font-weight:750;white-space:nowrap;font-variant-numeric:tabular-nums}
+.fin-list{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:visible}
+.fin-row{padding:16px;border-bottom:1px solid var(--border);min-width:0}
+.fin-row:last-child{border-bottom:0}
+.fin-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:start}
+.fin-name{min-width:0}.fin-name h3{margin:0;font-size:15px;line-height:1.45;font-weight:700;overflow-wrap:anywhere}
+.fin-name small,.fin-next small,.fin-rem small{display:block;font-size:11px;color:var(--secondary);line-height:1.5}
+.fin-next{text-align:end;min-width:0}.fin-next strong{display:block;font-size:16px;white-space:nowrap;font-weight:750;font-variant-numeric:tabular-nums}
+.fin-next span[dir=ltr],.fin-rem span[dir=ltr],.fin-summary span[dir=ltr]{display:inline-block;direction:ltr;unicode-bidi:isolate}
+.fin-due{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;margin-top:9px;color:var(--secondary);font-size:12px}
+.fin-due strong{color:var(--text);font-weight:650}.fin-late{color:var(--negative)}
+.fin-bottom{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;margin-top:12px}
+.fin-rem{min-width:0}.fin-rem strong{display:block;font-size:14px;white-space:nowrap;font-weight:700;font-variant-numeric:tabular-nums}
+.fin-actions{display:flex;align-items:center;gap:7px}.fin-actions button{min-height:40px;min-width:56px;padding:8px 12px;border-radius:11px;font-size:12px;font-weight:650;white-space:nowrap}
+.fin-actions .fin-toggle{border:1px solid var(--border);background:transparent;color:var(--text)}
+.fin-actions .fin-pay{border:0;background:var(--accent);color:#fff}
+.fin-extra{margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}.fin-extra[hidden]{display:none}
+.fin-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.fin-metrics>div{min-width:0}.fin-metrics small{display:block;font-size:11px;color:var(--secondary)}.fin-metrics strong{display:block;font-size:13px;font-weight:650;overflow-wrap:anywhere}
+.fin-progress-title{display:flex;justify-content:space-between;flex-wrap:wrap;gap:5px;margin:14px 0 6px;font-size:11px;color:var(--secondary)}
+.fin-progress{height:4px;background:var(--border);border-radius:99px;overflow:hidden;direction:rtl}.fin-progress span{height:100%;display:block;background:var(--accent);border-radius:99px}
+.fin-extra>.tiny{margin-top:14px}
+@media(max-width:700px){
+ .shell{padding:12px 12px calc(125px + env(safe-area-inset-bottom));overflow-x:clip}
+ .header{margin-bottom:14px}.title{font-size:25px}.header .subtle{font-size:11px}
+ .nav{box-shadow:0 -3px 15px #0000000a;gap:2px}
+ .fin-row{padding:14px 12px}.fin-name h3{font-size:14px}.fin-next strong{font-size:14px}
+ .fin-actions button{padding:8px 10px}.fin-rem strong{font-size:13px}.fin-summary strong{font-size:17px}
+ .item{display:grid;grid-template-columns:minmax(0,1fr)}.item-actions{max-width:none;width:100%;justify-content:space-between}
+ .fields{grid-template-columns:1fr}
+}
+@media(max-width:360px){
+ .fin-row{padding:12px 10px}.fin-head{gap:7px}.fin-next strong{font-size:13px}.fin-name h3{font-size:13px}
+ .fin-rem strong{font-size:12px}.fin-actions button{min-width:49px;padding:7px}.fin-summary strong{font-size:15px}
+}
+@media(prefers-color-scheme:dark){:root{--accent:#32baa1}.fin-actions .fin-pay{color:#0b2420}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
