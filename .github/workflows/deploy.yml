@@ -34,6 +34,11 @@ jobs:
           test -f public/index.html
           test -f public/sw.js
           test -f public/manifest.webmanifest
+      - name: Apply mobile-first UI refinements
+        run: |
+          python3 refinement/apply.py
+          node --check public/app.js
+          test -f public/smart-list.css
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
