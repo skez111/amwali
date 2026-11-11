@@ -1,0 +1,42 @@
+name: Deploy Amwali PWA
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare application
+        shell: bash
+        run: |
+          mkdir -p public
+          if [ -f amwali-pwa-ready.zip ]; then
+            unzip -q -o amwali-pwa-ready.zip -d public
+          elif [ -f index.html ]; then
+            cp -a index.html app.js styles.css sw.js manifest.webmanifest icons .nojekyll public/
+          else
+            echo 'Upload amwali-pwa-ready.zip or app files to the repository root first.'
+            exit 1
+          fi
+          test -f public/index.html
+          test -f public/sw.js
+          test -f public/manifest.webmanifest
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - id: deployment
+        uses: actions/deploy-pages@v4
